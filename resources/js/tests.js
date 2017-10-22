@@ -80,7 +80,6 @@ TracksterTests.testSearchTracksByTitle = function(errors) {
       url = call[0] && call[0].url;
       successFn = call[0] && call[0].success;
     }
-
     if (!url) {
       errors.push('searchTracksByTitle: $.ajax must specify a "url" parameter.');
     } else {

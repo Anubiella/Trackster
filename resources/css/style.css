@@ -9,6 +9,11 @@ body{
 	line-height: 2.5;
 }
 /*HEADER SECTION*/
+a,
+a:hover,
+a:focus {
+  text-decoration: none;
+}
 .header{
 	background-color: #22013f;
 	padding: 2.75rem 0;
@@ -42,10 +47,12 @@ body{
 	font-weight: 500;
 }
 /*TRACKS SECTION*/
-.tracklist{
+.tracklist .track{
 	color: rgb(74,74,74);
 	border-bottom: 1px solid rgb(204,204,204);
 	font-size: 1rem;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
 }
 .tracklist .row:hover{
 	background-color: rgb(239,237,242);
@@ -55,8 +62,12 @@ body{
 	margin-bottom: auto;
 	color: rgb(255,0,171);
 	font-size: 2rem;
+	text-decoration: none;
 }
-.tracklist .track, .tracklist .play{
+.tracklist .track .play:hover{
+	color: #ff66cc;
+}
+.tracklist .track, .tracklist .play, .tracklist div, .tracklist a{
 	display: flex;
 	align-items: center;
 }
