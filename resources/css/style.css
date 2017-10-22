@@ -52,6 +52,13 @@ a:focus {
 	color: white;
 	font-weight: 500;
 }
+.attrib a{
+	color: white;
+}
+.attrib a:hover{
+	color: black;
+	transition: 1s ease;
+}
 /*TRACKS SECTION*/
 .tracklist .track{
 	color: rgb(74,74,74);

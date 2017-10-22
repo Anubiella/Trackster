@@ -1,15 +1,54 @@
 const API_KEY = '7ade5558956123a107411dfabf1e2772';
 var Trackster = {};
+var trackobj = {};
 
 $(document).ready(function(){
     $('.search').click(function(){
     	Trackster.searchTracksByTitle($('#inputext').val());
     });
     $("#inputext").keydown(function(event){
-	    if(event.keyCode == 13){
+	    if(event.keyCode == 13 && $('#inputext').val()!= ''){
 	    	Trackster.searchTracksByTitle($('#inputext').val());
 	    	};
-	    });
+	});
+	$('#popularity').click(function(){
+		if (!jQuery.isEmptyObject(trackobj)){
+			trackobj.sort(function(a, b) {
+	    		return parseInt(b.listeners) - parseInt(a.listeners);
+			});
+			Trackster.renderTracks(trackobj);
+		} 
+	});
+	$('#artist').click(function(){
+		if (!jQuery.isEmptyObject(trackobj)){
+			trackobj.sort(function(a, b) {
+	  			var nameA = a.artist.toUpperCase(); // ignore upper and lowercase
+	  			var nameB = b.artist.toUpperCase(); // ignore upper and lowercase
+			  	if (nameA < nameB) {
+			    	return -1;
+			  	}
+			  	if (nameA > nameB) {
+			    	return 1;
+			  	}
+			}); 
+			Trackster.renderTracks(trackobj);
+		}
+	});
+	$('#song').click(function(){
+		if (!jQuery.isEmptyObject(trackobj)){
+			trackobj.sort(function(a, b) {
+	  			var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+	  			var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+			  	if (nameA < nameB) {
+			    	return -1;
+			  	}
+			  	if (nameA > nameB) {
+			    	return 1;
+			  	}
+			}); 
+			Trackster.renderTracks(trackobj);
+		}	
+	});
 });
 /*
   Given an array of track data, create the HTML for a Bootstrap row for each.
@@ -42,6 +81,7 @@ $(document).ready(function(){
 			url:'https://ws.audioscrobbler.com/2.0/?method=track.search&track='+title+'&api_key='+API_KEY+'&format=json',
 			success: function(result){
 				console.log(result);
+				trackobj = result.results.trackmatches.track;
 				Trackster.renderTracks(result.results.trackmatches.track);
 			},
 			beforeSend: function(){
