@@ -7,11 +7,9 @@ $(document).ready(function(){
     });
     $("#inputext").keydown(function(event){
 	    if(event.keyCode == 13){
-	        $('.search').click(function(){
 	    	Trackster.searchTracksByTitle($('#inputext').val());
-	    	});
-	    }
-	});
+	    	};
+	    });
 });
 /*
   Given an array of track data, create the HTML for a Bootstrap row for each.
@@ -45,6 +43,12 @@ $(document).ready(function(){
 			success: function(result){
 				console.log(result);
 				Trackster.renderTracks(result.results.trackmatches.track);
+			},
+			beforeSend: function(){
+				$('.header h1').addClass('.title');
+			},
+			complete: function(){
+				$('.header h1').removeClass('.title');
 			}
 		});
 	};

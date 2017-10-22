@@ -25,6 +25,12 @@ a:focus {
 	margin-top: 0;
 	margin-bottom: 0;
 }
+.title{
+}
+.title:hover{
+	transform: scale(2,2) translateX(200px);
+	transition: .4s ease;
+}
 .header input{
 	border-radius: 19px;
 	margin-right: 1rem;
